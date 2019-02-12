@@ -6,6 +6,7 @@
     "effector": "^0.18.2",
     "effector-react": "^0.18.6",
     "emotion": "^9.2.12",
+    "emotion-normalize": "^8.0.0",
     "emotion-theming": "^9.2.9",
     "history": "^4.7.2",
     "mineral-ui": "^0.56.0",
@@ -13,16 +14,35 @@
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-emotion": "^9.2.12",
+    "react-router": "^4.4.0-beta.1",
+    "react-router-config": "^4.4.0-beta.6",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.5"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prettier": "prettier './**/**/**.{json,js,eslintrc}' --write",
+    "test:eslint": "eslint ."
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test:eslint"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "*.{json, eslintrc}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "browserslist": [
     ">0.2%",
@@ -32,7 +52,10 @@
   ],
   "devDependencies": {
     "@atomix/eslint-config-react": "^7.0.0-alpha.3",
+    "babel-eslint": "^9.0.0",
     "eslint-config-prettier": "^4.0.0",
+    "eslint-plugin-jest": "^22.2.2",
+    "eslint-plugin-prettier": "^3.0.1",
     "husky": "^1.3.1",
     "lint-staged": "^8.1.3",
     "prettier": "^1.16.4"
