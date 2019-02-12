@@ -1,18 +1,22 @@
 import React from "react"
 import ReactDom from "react-dom"
-import { Button, ThemeProvider } from "mineral-ui"
-import { BrowserRouter } from "react-router-dom"
+import { ThemeProvider } from "mineral-ui"
+import { Router } from "react-router-dom"
+import { createBrowserHistory } from "history"
+
 import * as serviceWorker from "./service-worker"
+import { App } from "./app"
 
 const root = document.getElementById("root")
+const history = createBrowserHistory()
 
 const render = () =>
   ReactDom.render(
-    <BrowserRouter>
+    <Router history={history}>
       <ThemeProvider>
-        <Button>Hello world</Button>
+        <App />
       </ThemeProvider>
-    </BrowserRouter>,
+    </Router>,
     root,
   )
 
