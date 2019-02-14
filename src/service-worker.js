@@ -102,6 +102,8 @@ function registerValidSW(swUrl, config) {
     })
 }
 
+const NOT_FOUND_STATUS = 404
+
 function checkValidServiceWorker(swUrl, config) {
   // Check if the service worker can be found. If it can't reload the page.
   fetch(swUrl)
@@ -110,7 +112,7 @@ function checkValidServiceWorker(swUrl, config) {
       const contentType = response.headers.get("content-type")
 
       if (
-        response.status === 404 ||
+        response.status === NOT_FOUND_STATUS ||
         (contentType != null && contentType.indexOf("javascript") === -1)
       ) {
         // No service worker found. Probably a different app. Reload the page.
