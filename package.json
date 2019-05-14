@@ -1,0 +1,29 @@
+{
+  "name": "@howtocards/admin",
+  "version": "0.1.0",
+  "description": "Administration interface",
+  "repository": "git@github.com:howtocards/admin.git",
+  "author": "Sergey Sova <mail@sergeysova.com> (https://sergeysova.com/)",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build -d dist --no-autoinstall --public-url / src/index.html"
+  },
+  "dependencies": {
+    "effector": "^0.18.6",
+    "effector-react": "^0.18.10",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@effector/babel-plugin": "^0.0.3",
+    "@effector/babel-plugin-react": "^0.0.3",
+    "parcel-bundler": "^1.12.3"
+  }
+}
