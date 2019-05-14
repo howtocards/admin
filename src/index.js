@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { App as P } from "./app";
 
 const Counter = () => {
   const [value, setValue] = React.useState(0);
@@ -17,6 +18,7 @@ const Counter = () => {
 const App = () => (
   <div>
     <Counter />
+    <P />
   </div>
 );
 

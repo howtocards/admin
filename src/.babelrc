@@ -9,6 +9,7 @@
         "shippedProposals": true,
         "loose": true,
         "useBuiltIns": "usage",
+        "corejs": "2",
         "targets": {
           "browsers": [
             "last 2 Chrome versions",
@@ -17,7 +18,8 @@
           ]
         }
       }
-    ]
+    ],
+    "linaria/babel"
   ],
   "plugins": [
     [
