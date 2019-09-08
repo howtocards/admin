@@ -8,6 +8,7 @@
   "private": false,
   "scripts": {
     "start": "parcel src/index.html",
+    "test": "true",
     "build": "parcel build -d dist --no-autoinstall --public-url / src/index.html"
   },
   "dependencies": {
