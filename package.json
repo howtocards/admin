@@ -1,6 +1,6 @@
 {
   "name": "@howtocards/admin",
-  "version": "0.1.0",
+  "version": "0.1.1-0",
   "description": "Administration interface",
   "repository": "git@github.com:howtocards/admin.git",
   "author": "Sergey Sova <mail@sergeysova.com> (https://sergeysova.com/)",
@@ -8,6 +8,7 @@
   "private": false,
   "scripts": {
     "start": "parcel src/index.html",
+    "test": "true",
     "build": "parcel build -d dist --no-autoinstall --public-url / src/index.html"
   },
   "dependencies": {
