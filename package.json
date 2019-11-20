@@ -1,6 +1,6 @@
 {
   "name": "@howtocards/admin",
-  "version": "0.1.1-0",
+  "version": "0.1.1",
   "description": "Administration interface",
   "repository": "git@github.com:howtocards/admin.git",
   "author": "Sergey Sova <mail@sergeysova.com> (https://sergeysova.com/)",
