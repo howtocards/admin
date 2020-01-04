@@ -6,7 +6,7 @@ import { useSessionKiller } from '../hooks';
 
 type HeaderProps = {
   className?: string;
-  links: Array<{ path: string; title: string }>;
+  links: Array<{ path: string; name: string }>;
 };
 
 const HeaderContent: React.FC<HeaderProps> = ({ className, links }) => {
@@ -17,15 +17,15 @@ const HeaderContent: React.FC<HeaderProps> = ({ className, links }) => {
       <Logo />
       <nav>
         <Menu theme="dark" mode="horizontal">
-          {links.map(({ path, title }) => (
+          {links.map(({ path, name }) => (
             <Menu.Item key={path}>
-              <Link to={path}>{title}</Link>
+              <Link to={path}>{name}</Link>
             </Menu.Item>
           ))}
         </Menu>
       </nav>
       <Button type="primary" icon="logout" onClick={killSession}>
-        Завершить сессию
+        Выйти
       </Button>
     </div>
   );
@@ -35,6 +35,9 @@ export const AuthHeader = styled(HeaderContent)`
   display: flex;
   flex-direction: row;
   align-items: center;
+  align-content: center;
+  line-height: 4rem;
+  height: 100%;
 
   nav {
     display: flex;
@@ -43,27 +46,20 @@ export const AuthHeader = styled(HeaderContent)`
   }
 
   nav a {
+    text-transform: capitalize;
     font-weight: 700;
-  }
-
-  nav > * {
-    line-height: 4rem;
   }
 `;
 
 const LogoContent: React.FC<{ className?: string }> = ({ className }) => (
   <Link className={className} to="/">
-    <Icon type="user" />
-    <div>Клиенты</div>
+    <Icon type="home" />
   </Link>
 );
 
 const Logo = styled(LogoContent)`
-  position: relative;
-  font-size: 2rem;
+  font-size: 1rem;
   color: white;
-  display: flex;
-  align-items: center;
 
   div {
     margin-left: 1rem;

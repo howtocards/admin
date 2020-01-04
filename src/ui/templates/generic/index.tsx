@@ -26,6 +26,7 @@ const Content = styled(Layout.Content)`
     min-height: calc(100vh - 64px);
     padding: 2rem;
   }
+
   &[data-full='true'] {
     min-height: 100vh;
     padding: 0 2rem;
