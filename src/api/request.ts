@@ -98,10 +98,20 @@ const mocks: Mocks = {
     window.localStorage.removeItem('current-user-id');
     return {};
   },
-
-  'POST /customers/search': (_body: void, query: Query): object => ({
-    customers: [],
-  }),
+  'POST /users': (_body: void) => [
+    {
+      id: 1,
+      userName: 'smith',
+      displayName: 'Mr. Smith',
+      email: 'smith@example.com',
+    },
+    {
+      id: 2,
+      userName: 'jones',
+      displayName: 'Mr. Jones',
+      email: 'Jones@example.com',
+    },
+  ],
 };
 
 class Failed extends Error {
