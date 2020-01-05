@@ -10,6 +10,7 @@ interface FieldProps {
   isTouched?: boolean;
   name: string;
   placeholder: string;
+  label?: string;
   config: FieldConfig;
 }
 
@@ -20,6 +21,7 @@ export const Field = ({
   name,
   placeholder,
   config,
+  label,
 }: FieldProps) => {
   const { $value, $error, changed } = config;
 
@@ -33,6 +35,7 @@ export const Field = ({
       validateStatus={isFailed ? 'error' : ''}
       help={isFailed && error}
       className={`form-item-${name}`}
+      label={label}
     >
       <Input
         value={value}

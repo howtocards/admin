@@ -185,3 +185,19 @@ li {
 .ant-spin-nested-loading {
   width: 100%;
 }
+
+.ant-table-bordered .ant-table-thead > tr > th:not(:last-child) {
+  border-right: 0;
+}
+
+.ant-table-tbody > .ant-table-expanded-row > td:nth-child(1) {
+  border-right: 0 !important;
+}
+.ant-table-tbody > .ant-table-expanded-row > td:nth-child(2) .ant-card {
+  position: relative;
+  left: -17px;
+}
+
+.ant-table-tbody > .ant-table-expanded-row > td:nth-child(2) .ant-badge {
+  margin: 0 0 0 6px;
+}

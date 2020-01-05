@@ -29,7 +29,7 @@ export const addColumnSearch = (dataIndex: string, ref: any) => ({
         onClick={confirm}
         icon="search"
         size="small"
-        style={{ width: 90, marginRight: 8 }}
+        style={{ width: 188, marginRight: 8 }}
       >
         Search
       </Button>
@@ -38,10 +38,7 @@ export const addColumnSearch = (dataIndex: string, ref: any) => ({
   filterIcon: (filtered: boolean) => (
     <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
   ),
-
   render: (text: string) => {
-    console.log('ref', ref.current.props.value);
-
     return (
       <Highlighter
         highlightStyle={{ backgroundColor: '#ffc069' }}
