@@ -9,7 +9,10 @@ type FilterDropdown = {
   clearFilters: () => void;
 };
 
-export const addColumnSearch = (dataIndex: string, ref: any) => ({
+export const addColumnSearch = (
+  dataIndex: string,
+  ref: React.RefObject<any>,
+) => ({
   filterDropdown: ({
     setSelectedKeys,
     selectedKeys,
@@ -42,7 +45,7 @@ export const addColumnSearch = (dataIndex: string, ref: any) => ({
     return (
       <Highlighter
         highlightStyle={{ backgroundColor: '#ffc069' }}
-        searchWords={[ref.current.props.value]}
+        searchWords={ref.current ? [ref.current.props.value] : []}
         autoEscape
         textToHighlight={text && text.toString()}
       />

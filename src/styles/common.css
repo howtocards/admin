@@ -201,3 +201,7 @@ li {
 .ant-table-tbody > .ant-table-expanded-row > td:nth-child(2) .ant-badge {
   margin: 0 0 0 6px;
 }
+
+.ant-tag {
+  position: relative;
+}

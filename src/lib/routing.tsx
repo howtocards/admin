@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 
-type SimpleRoute<Context> = {
+export type SimpleRoute<Context> = {
   name?: string;
   path?: string;
   exact?: boolean;

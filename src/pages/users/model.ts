@@ -14,17 +14,17 @@ import * as API from 'api/users';
 export const pageMounted = createEvent();
 export const submitForm = createEvent<React.MouseEvent>();
 
-const getUsers = createEffect<void, API.UserCard[]>();
+const getUsersList = createEffect<void, API.UserCard[]>();
 export const blockUser = createEffect<number, {}>();
 
-getUsers.use(API.getUsersList);
+getUsersList.use(API.getUsersList);
 blockUser.use(API.blockUser);
 
 export const $usersLits = createStore<API.UserCard[] | null>(null);
 
-$usersLits.on(getUsers.done, (_, { result }) => result);
+$usersLits.on(getUsersList.done, (_, { result }) => result);
 
-forward({ from: pageMounted, to: getUsers });
+forward({ from: pageMounted, to: getUsersList });
 
 export const userNameField = createField({
   name: 'userName',
@@ -39,16 +39,16 @@ export const emailField = createField({
 });
 
 export const editForm = createForm({
-  name: 'editorm',
+  name: 'editForm',
   fields: [userNameField, displayNameField, emailField],
 });
 
-const editCard = createEffect<Record<string, string>, {}>();
+const editUser = createEffect<API.UserCard, {}>();
 
-editCard.use(API.editUserCard as any);
+editUser.use(API.editUser);
 
 guard({
   source: sample(editForm.$values, submitForm),
   filter: editForm.$isValid,
-  target: editCard,
+  target: editUser,
 });

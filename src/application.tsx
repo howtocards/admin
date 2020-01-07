@@ -23,8 +23,18 @@ import { ROUTES } from 'pages/routes';
 
 export const history = createBrowserHistory();
 
+const navPages = ['users', 'cards'];
+
+const navLinks = navPages.map(page => {
+  return {
+    path: ROUTES[page].path || page,
+    name: ROUTES[page].name || page,
+  };
+});
+
 export const App: React.FC = () => {
   useSessionFetch();
+
   const isWaiting = useSessionWaiting();
 
   const session = useSession();
@@ -34,18 +44,11 @@ export const App: React.FC = () => {
     return protectRoutes(compiled, { session });
   }, [session]);
 
-  const headerLinks = React.useMemo(() => {
-    return routes.map(({ path, name }: any) => ({
-      path,
-      name,
-    }));
-  }, [routes]);
-
   return (
     <Router history={history}>
       <>
         <Normalize />
-        <GenericTemplate header={<AuthHeader links={headerLinks} />}>
+        <GenericTemplate header={<AuthHeader links={navLinks} />}>
           {isWaiting ? null : (
             <Switch>
               {routes.map(route => (

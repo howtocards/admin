@@ -5,8 +5,8 @@ import { Form, Icon, Input } from 'antd';
 import { FieldConfig } from 'lib/forms';
 
 interface FieldProps {
-  type?: 'text' | 'password';
-  icon: string;
+  type?: 'text' | 'password' | 'textarea';
+  icon?: string;
   isTouched?: boolean;
   name: string;
   placeholder: string;

@@ -49,7 +49,7 @@ type CreateForm = {
 };
 
 export type FormConfig = {
-  $values: Store<Record<string, string>>;
+  $values: Store<object>;
   $isValid: Store<boolean>;
   $isTouched: Store<boolean>;
   submit: Event<void>;
@@ -63,7 +63,7 @@ export function createForm({ name, fields }: CreateForm): FormConfig {
 
   $isTouched.on(submit, () => true);
 
-  const $values: Store<Record<string, string>> = combine(
+  const $values: Store<object> = combine(
     fields.reduce(
       (accumulator, { $value, name: fieldName }) => ({
         ...accumulator,
@@ -79,4 +79,15 @@ export function createForm({ name, fields }: CreateForm): FormConfig {
 export const validateFields = (fields: FieldConfig[]) => {
   const allStores = fields.map(({ $error }) => $error);
   return combine(allStores, all => all.every((value: string | null) => !value));
+};
+
+export const formLayout = {
+  labelCol: {
+    xs: { span: 24 },
+    sm: { span: 4 },
+  },
+  wrapperCol: {
+    xs: { span: 24 },
+    sm: { span: 20 },
+  },
 };

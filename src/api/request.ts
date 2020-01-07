@@ -14,7 +14,7 @@ export async function request(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<any> {
   const method = 'POST';
-
+  console.log('body', body);
   const mockMethod = `${method} ${url}`;
 
   if (mockMethod in mocks) {
@@ -100,25 +100,72 @@ const mocks: Mocks = {
   },
   'POST /users/list': (_body: void) => [
     {
-      id: 1,
+      id: 0,
       userName: 'smith',
       displayName: 'Mr. Smith',
       email: 'smith@example.com',
       isBlocked: false,
+      created: 7,
+      favorite: 14,
     },
     {
-      id: 2,
+      id: 1,
       userName: 'jones',
       displayName: 'Mr. Jones',
       email: 'Jones@example.com',
       isBlocked: true,
+      created: 4,
+      favorite: 8,
     },
   ],
-  'POST /user/update/id': (_body: void): object => {
+  'POST /user/update': (_body: void): object => {
     return {};
   },
-  'POST /user/block/id': (_body: void): object => {
+  'POST /user/block': (_body: void): object => {
     return {};
+  },
+  'POST /cards/list': (_body: void): object => {
+    return [
+      {
+        id: 0,
+        title: 'Loose coupling features with effector',
+        content:
+          'Several disconnected features can utilize another feature with all it has inside. We can compose features on `effector` level',
+        isAchieved: false,
+      },
+      {
+        id: 1,
+        title: 'Manage access with react components and hooks',
+        content:
+          'Several disconnected features can utilize another feature with all it has inside. We can compose features on `effector` level',
+        isAchieved: false,
+      },
+      {
+        id: 2,
+        title: 'Upgrade dependencies to latest with yarn',
+        content:
+          'Several disconnected features can utilize another feature with all it has inside. We can compose features on `effector` level',
+        isAchieved: true,
+      },
+    ];
+  },
+  'POST /cards/delete': (_body: void): object => {
+    return {};
+  },
+  'POST /cards/achieve': (_body: void): object => {
+    return {};
+  },
+  'POST /cards/rerender': (_body: void): object => {
+    return {};
+  },
+  'POST /cards': (_body: void): object => {
+    return {
+      id: 1,
+      title: 'Manage access with react components and hooks',
+      content:
+        'Several disconnected features can utilize another feature with all it has inside. We can compose features on `effector` level',
+      isAchieved: false,
+    };
   },
 };
 

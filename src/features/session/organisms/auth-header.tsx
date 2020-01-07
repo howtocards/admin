@@ -1,7 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Icon, Menu, Button } from 'antd';
+
+import { Icon, Menu, Button, Avatar } from 'antd';
 import { useSessionKiller } from '../hooks';
 
 type HeaderProps = {
@@ -11,12 +12,13 @@ type HeaderProps = {
 
 const HeaderContent: React.FC<HeaderProps> = ({ className, links }) => {
   const killSession = useSessionKiller();
+  const userID = window.localStorage.getItem('current-user-id');
 
   return (
     <div className={className}>
       <Logo />
       <nav>
-        <Menu theme="dark" mode="horizontal">
+        <Menu theme="dark" mode="horizontal" style={{ lineHeight: '64px' }}>
           {links.map(({ path, name }) => (
             <Menu.Item key={path}>
               <Link to={path}>{name}</Link>
@@ -24,6 +26,12 @@ const HeaderContent: React.FC<HeaderProps> = ({ className, links }) => {
           ))}
         </Menu>
       </nav>
+      <Avatar
+        shape="square"
+        style={{ backgroundColor: 'rgb(114, 101, 230)', marginRight: 12 }}
+      >
+        {userID}
+      </Avatar>
       <Button type="primary" icon="logout" onClick={killSession}>
         Выйти
       </Button>

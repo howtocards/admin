@@ -6,6 +6,8 @@ export type UserCard = {
   displayName: string;
   email: string;
   isBlocked: boolean;
+  created: number;
+  favorite: number;
 };
 
 export type EditUserCardProps = {
@@ -17,8 +19,8 @@ export type EditUserCardProps = {
 
 export const getUsersList = (): Promise<UserCard[]> => request('/users/list');
 
-export const editUserCard = (userCard: EditUserCardProps): Promise<{}> =>
-  request(`/user/update/id`, { userCard });
+export const editUser = (userCard: EditUserCardProps): Promise<{}> =>
+  request(`/user/edit`, { userCard });
 
 export const blockUser = (id: number): Promise<{}> =>
-  request(`/user/block/id`, { id });
+  request(`/user/block`, { id });
