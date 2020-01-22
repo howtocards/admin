@@ -24,15 +24,15 @@ import { Field } from 'ui/atoms';
 import { CardEditor } from 'ui/molecules';
 
 import {
-  deleteCard,
-  achieveCard,
   $cardsLits,
+  $selectedIDs,
+  archiveCard,
+  deleteCard,
   pageMounted,
-  titleField,
-  submitForm,
   rerenderCard,
   selectRows,
-  $selectedIDs,
+  submitForm,
+  titleField,
 } from './model';
 
 export const CardProfile: React.FC<{ data: CardData }> = ({ data }) => {
@@ -43,10 +43,10 @@ export const CardProfile: React.FC<{ data: CardData }> = ({ data }) => {
           <Tag>{data.id}</Tag>
           <Divider type="vertical" style={{ marginRight: 14 }} />
           <b>{data.title}</b>
-          {data.isAchieved && (
+          {data.isArchived && (
             <>
               <Divider type="vertical" />
-              <Tag color="#52c41a">achieved</Tag>
+              <Tag color="#52c41a">archived</Tag>
             </>
           )}
         </>
@@ -54,11 +54,11 @@ export const CardProfile: React.FC<{ data: CardData }> = ({ data }) => {
     >
       <Form {...formLayout} style={{ maxWidth: 1112 }}>
         <Field
-          name="userName"
+          name="title"
           placeholder={data.title || ''}
-          icon="user"
+          icon="book"
           config={titleField}
-          label="Заголовок"
+          label="Title"
         />
         <Form.Item label=" " colon={false}>
           <CardEditor>{data.content}</CardEditor>
@@ -66,15 +66,15 @@ export const CardProfile: React.FC<{ data: CardData }> = ({ data }) => {
         <Divider />
         <Form.Item label=" " colon={false}>
           <Button icon="save" type="primary" onClick={submitForm}>
-            Сохранить карточку
+            Save
           </Button>
           &nbsp; &nbsp;
           <Button
-            type="primary"
+            type="default"
             icon="container"
-            onClick={() => achieveCard(data.id)}
+            onClick={() => archiveCard(data.id)}
           >
-            В архив
+            Archive
           </Button>
           &nbsp; &nbsp;
           <Button
@@ -82,7 +82,7 @@ export const CardProfile: React.FC<{ data: CardData }> = ({ data }) => {
             icon="delete"
             onClick={() => deleteCard(data.id)}
           >
-            Удалить
+            Delete
           </Button>
         </Form.Item>
       </Form>
@@ -122,21 +122,24 @@ export const CardsPage = () => {
         render: (_: string, record: CardData) => (
           <>
             <Button
-              onClick={() => deleteCard(record.id)}
-              type="danger"
-              icon="delete"
-            />
-            &nbsp; &nbsp;
-            <Button
               onClick={() => rerenderCard(record.id)}
               type="primary"
               icon="reload"
+              title="Make preview"
             />
-            &nbsp; &nbsp;
+            &nbsp;
             <Button
-              onClick={() => achieveCard(record.id)}
-              type={record.isAchieved ? 'dashed' : 'primary'}
+              onClick={() => archiveCard(record.id)}
+              type={record.isArchived ? 'dashed' : 'primary'}
               icon="container"
+              title={record.isArchived ? 'Unarchive' : 'Archive'}
+            />
+            &nbsp;
+            <Button
+              onClick={() => deleteCard(record.id)}
+              type="danger"
+              icon="delete"
+              title="Delete card"
             />
           </>
         ),
@@ -148,7 +151,7 @@ export const CardsPage = () => {
 
   return (
     <>
-      <PageHeader title={'Все карточки'} />
+      <PageHeader title="Cards" subTitle="List all available cards" />
       <Table
         title={() => (
           <TableHeaderContainer>
@@ -158,7 +161,7 @@ export const CardsPage = () => {
                 icon="reload"
                 onClick={() => selectedIDs && rerenderCard(selectedIDs)}
               >
-                Ререндерить
+                Make preview
               </Button>
             </Badge>
           </TableHeaderContainer>
@@ -177,7 +180,7 @@ export const CardsPage = () => {
         expandedRowRender={record => <CardProfile data={record} />}
         expandIcon={props => (
           <Icon
-            type="idcard"
+            type="book"
             onClick={e => {
               props.onExpand(props.record, e);
             }}

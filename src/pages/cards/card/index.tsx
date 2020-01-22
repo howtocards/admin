@@ -14,12 +14,12 @@ import {
   pageMounted,
   titleField,
   submitCardForm,
-  metaTitleField,
-  metaDescField,
+  previewUrlField,
+  contentForSearchField,
   submitMetaForm,
 } from './model';
 
-import { deleteCard, achieveCard } from '../model';
+import { deleteCard, archiveCard } from '../model';
 
 export const CardPage = () => {
   const { id } = useParams();
@@ -44,32 +44,32 @@ export const CardPage = () => {
       />
       <Row gutter={24}>
         <Col span={12}>
-          <Card loading={Boolean(!card)} title="Мета">
+          <Card loading={Boolean(!card)} title="Meta info">
             <Form {...formLayout}>
               <Field
-                name="userName"
-                placeholder={card?.title || ''}
+                name="cardTitle"
+                placeholder={card?.title ?? ''}
                 icon="align-left"
                 config={titleField}
-                label="Заголовок"
+                label="Title"
               />
               <Divider />
               <Field
-                name="metaTitle"
-                placeholder={card?.metaTitle || ''}
-                config={metaTitleField}
-                label="Title"
+                name="previewUrl"
+                placeholder={card?.previewUrl ?? ''}
+                config={previewUrlField}
+                label="Preview URL"
               />
               <Field
-                name="metaTitle"
-                placeholder={card?.metaDescription || ''}
-                config={metaDescField}
-                label="Description"
+                name="contentForSearch"
+                placeholder={card?.contentForSearch ?? ''}
+                config={contentForSearchField}
+                label="Content for search"
               />
               <Divider />
               <Form.Item label=" " colon={false}>
                 <Button type="primary" onClick={submitMetaForm}>
-                  Сохранить мету
+                  Save
                 </Button>
               </Form.Item>
             </Form>
@@ -80,11 +80,11 @@ export const CardPage = () => {
             loading={Boolean(!card)}
             title={
               <>
-                Карточка
-                {card?.isAchieved && (
+                Card
+                {card?.isArchived && (
                   <>
                     <Divider type="vertical" />
-                    <Tag color="#52c41a">achieved</Tag>
+                    <Tag color="#52c41a">archived</Tag>
                   </>
                 )}
               </>
@@ -94,15 +94,15 @@ export const CardPage = () => {
               <CardEditor>{card?.content}</CardEditor>
               <Divider />
               <Button icon="save" type="primary" onClick={submitCardForm}>
-                Сохранить карточку
+                Save
               </Button>
               &nbsp; &nbsp;
               <Button
-                type="primary"
+                type="default"
                 icon="container"
-                onClick={() => achieveCard(numberID)}
+                onClick={() => archiveCard(numberID)}
               >
-                В архив
+                Archive
               </Button>
               &nbsp; &nbsp;
               <Button
@@ -110,7 +110,7 @@ export const CardPage = () => {
                 icon="delete"
                 onClick={() => deleteCard(numberID)}
               >
-                Удалить
+                Delete
               </Button>
             </Form>
           </Card>

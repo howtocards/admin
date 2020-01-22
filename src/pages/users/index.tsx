@@ -53,21 +53,21 @@ const UserProfile: React.FC<{ data: UserCard }> = ({ data }) => {
           placeholder={data.userName || ''}
           icon="user"
           config={userNameField}
-          label="Пользователь"
+          label="User"
         />
         <Field
           name="displayName"
           placeholder={data.displayName || ''}
           icon="user"
           config={displayNameField}
-          label="Имя"
+          label="Display name"
         />
         <Field
           name="emailField"
           placeholder={data.email || ''}
           icon="mail"
           config={emailField}
-          label="Почта"
+          label="E-Mail"
         />
         <Form.Item label={' '} colon={false}>
           <Button type="primary" onClick={submitForm}>
@@ -98,7 +98,7 @@ export const UsersPage = () => {
         width: 80,
       },
       {
-        title: 'User',
+        title: 'Username',
         dataIndex: 'userName',
         key: 'userName',
         ...addColumnSearch('userName', userNameRef),
@@ -124,6 +124,7 @@ export const UsersPage = () => {
             onClick={() => blockUser(record.id)}
             type={record.isBlocked ? 'dashed' : 'danger'}
             icon={record.isBlocked ? 'unlock' : 'lock'}
+            title={record.isBlocked ? 'Unblock' : 'Block'}
           />
         ),
         width: 60,
@@ -134,7 +135,7 @@ export const UsersPage = () => {
 
   return (
     <UsersContainer>
-      <PageHeader title="Пользователи" />
+      <PageHeader title="Users" />
       <Table
         bordered
         columns={columns}

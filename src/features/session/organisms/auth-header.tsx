@@ -27,13 +27,12 @@ const HeaderContent: React.FC<HeaderProps> = ({ className, links }) => {
         </Menu>
       </nav>
       <Avatar
-        shape="square"
         style={{ backgroundColor: 'rgb(114, 101, 230)', marginRight: 12 }}
       >
-        {userID}
+        ID: {userID}
       </Avatar>
       <Button type="primary" icon="logout" onClick={killSession}>
-        Выйти
+        Logout
       </Button>
     </div>
   );

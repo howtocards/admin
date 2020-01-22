@@ -32,17 +32,17 @@ export const titleField = createField({
   name: 'titleField',
 });
 
-export const metaTitleField = createField({
-  name: 'metaTitleField',
+export const previewUrlField = createField({
+  name: 'previewUrlField',
 });
 
-export const metaDescField = createField({
-  name: 'metaDescField',
+export const contentForSearchField = createField({
+  name: 'contentForSearchField',
 });
 
 export const metaForm = createForm({
   name: 'metaForm',
-  fields: [titleField, metaTitleField, metaDescField],
+  fields: [titleField, previewUrlField, contentForSearchField],
 });
 
 export const pageMounted = createEvent<{ id: number }>();

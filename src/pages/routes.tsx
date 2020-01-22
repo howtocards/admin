@@ -13,14 +13,14 @@ type RoutesProps<T> = {
 export const ROUTES: RoutesProps<any> = {
   users: {
     path: '/',
-    name: 'Пользователи',
+    name: 'Users',
     exact: true,
     component: UsersPage,
     guards: [onlyUsers()],
   },
   cards: {
     path: '/cards',
-    name: 'Карточки',
+    name: 'Cards',
     exact: true,
     component: CardsPage,
     guards: [onlyUsers()],

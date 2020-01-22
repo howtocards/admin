@@ -27,14 +27,14 @@ export const LoginPage = () => {
         <Form name="loginForm" config={loginForm}>
           <Field
             name="login"
-            placeholder="Логин"
+            placeholder="Admin login"
             icon="user"
             config={loginField}
           />
           <Field
             type="password"
             name="password"
-            placeholder="Пароль"
+            placeholder="Password"
             icon="lock"
             config={passwordField}
           />
@@ -45,7 +45,7 @@ export const LoginPage = () => {
               className="login-form-button"
               size="large"
             >
-              Войти
+              Login
             </Button>
             {loginDenied && (
               <>

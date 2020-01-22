@@ -2,23 +2,19 @@ import * as React from 'react';
 import { Normalize } from 'styled-normalize';
 import { Router } from 'react-router';
 import { createBrowserHistory } from 'history';
+import { Switch, Route } from 'react-router';
 
 import 'antd/dist/antd.min.css';
 import './styles/common.css';
 
+import { compileRoutes, protectRoutes } from 'lib/routing';
+import { GenericTemplate } from 'ui';
 import {
   useSessionFetch,
   useSessionWaiting,
+  useSession,
   AuthHeader,
 } from 'features/session';
-
-import { GenericTemplate } from 'ui';
-
-import { Switch, Route } from 'react-router';
-
-import { useSession } from 'features/session';
-import { compileRoutes, protectRoutes } from 'lib/routing';
-
 import { ROUTES } from 'pages/routes';
 
 export const history = createBrowserHistory();

@@ -32,12 +32,12 @@ export const selectRows = createEvent<{ selectedRows: API.CardData[] }>();
 const getCardsList = createEffect<void, API.CardData[]>();
 
 export const deleteCard = createEffect<number, {}>();
-export const achieveCard = createEffect<number, {}>();
+export const archiveCard = createEffect<number, {}>();
 export const rerenderCard = createEffect<number | number[], {}>();
 
 getCardsList.use(API.getCardsList);
 deleteCard.use(API.deleteCard);
-achieveCard.use(API.achieveCard);
+archiveCard.use(API.achieveCard);
 rerenderCard.use(API.rerenderCard);
 
 export const $cardsLits = createStore<API.CardData[] | null>(null);

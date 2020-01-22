@@ -4,9 +4,9 @@ export type CardData = {
   id: number;
   title: string;
   content: string;
-  isAchieved: boolean;
-  metaTitle: string;
-  metaDescription: string;
+  isArchived: boolean;
+  previewUrl: string;
+  contentForSearch: string;
 };
 
 export const getCardsList = (): Promise<CardData[]> => request('/cards/list');
